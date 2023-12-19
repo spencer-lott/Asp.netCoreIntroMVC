@@ -1,0 +1,21 @@
+﻿@model List<Asp.netCoreMVCIntro.Models.Tutorial>;
+
+@{
+    ViewData["Title"] = "Title - Tutorial";
+}
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    @foreach (var tutorial in Model)
+    {   
+    <tr>
+        <td>@tutorial.Id</td>
+        <td>@tutorial.Name</td>
+        <td>@tutorial.Description</td>
+    </tr>
+    }
+</table>
