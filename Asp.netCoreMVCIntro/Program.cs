@@ -1,4 +1,6 @@
+using Asp.netCoreMVCIntro.Context;
 using Asp.netCoreMVCIntro.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace Asp.netCoreMVCIntro
 {
@@ -10,6 +12,10 @@ namespace Asp.netCoreMVCIntro
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            //Register DbContext
+            var connectionString = builder.Configuration.GetConnectionString("TutorialDbConnection");
+            builder.Services.AddDbContext<TutorialDbContext>(options => options.UseSqlServer(connectionString));
             builder.Services.AddScoped<ITutorialRepository, TutorialRepository>();
 
             var app = builder.Build();

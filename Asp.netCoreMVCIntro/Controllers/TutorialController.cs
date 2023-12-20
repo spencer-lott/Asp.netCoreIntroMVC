@@ -16,8 +16,6 @@ namespace Asp.netCoreMVCIntro.Controllers
 
         public IActionResult Index()
         {
-
-            //var tutorials = new TutorialRepository().GetAllTutorials();
             var tutorials = _tourRepository.GetAllTutorials();
             return View(tutorials);
         }

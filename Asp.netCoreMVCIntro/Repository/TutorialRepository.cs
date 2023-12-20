@@ -1,20 +1,15 @@
-﻿using Asp.netCoreMVCIntro.Models;
+﻿using Asp.netCoreMVCIntro.Context;
+using Asp.netCoreMVCIntro.Models;
 
 namespace Asp.netCoreMVCIntro.Repository
 {
     public class TutorialRepository : ITutorialRepository
     {
-        private List<Tutorial> _tutorials;
+        private readonly TutorialDbContext _context;
 
-        public TutorialRepository() 
+        public TutorialRepository(TutorialDbContext context) 
         {
-            //Temporarily we are going to create mock data
-            _tutorials = new List<Tutorial>
-            {
-                new Tutorial{ Id = 1, Name ="C#", Description ="C# tutorial"},
-                new Tutorial{ Id = 2, Name ="Asp.net core", Description ="Asp.net tutorial"}
-            };
-
+            _context = context;
         }
         public Tutorial Add(Tutorial tutorial)
         {
@@ -28,7 +23,7 @@ namespace Asp.netCoreMVCIntro.Repository
 
         public IEnumerable<Tutorial> GetAllTutorials()
         {
-            return _tutorials;
+            return _context.Tutorials;
         }
 
         public Tutorial GetTutorial(int Id)
