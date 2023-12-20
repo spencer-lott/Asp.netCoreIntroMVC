@@ -7,17 +7,53 @@ namespace Asp.netCoreMVCIntro.Controllers
 {
     public class TutorialController : Controller
     {
-        private readonly ITutorialRepository _tourRepository;
+        private readonly ITutorialRepository _tutorialRepository;
 
         public TutorialController(ITutorialRepository tutorialRepository)
         {
-            _tourRepository = tutorialRepository;
+            _tutorialRepository = tutorialRepository;
         }
 
         public IActionResult Index()
         {
-            var tutorials = _tourRepository.GetAllTutorials();
+            var tutorials = _tutorialRepository.GetAllTutorials();
             return View(tutorials);
+        }
+
+        [HttpGet]
+        public IActionResult CreateTutorial()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateTutorial(Tutorial tutorial)
+        {
+            Tutorial newTutorial = _tutorialRepository.Add(tutorial);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult EditTutorial(int Id)
+        {
+            Tutorial tutorial = _tutorialRepository.GetTutorial(Id);
+            return View(tutorial);
+        }
+
+        [HttpPost]
+        public IActionResult EditTutorial(Tutorial modifiedData)
+        {
+            Tutorial tutorial = _tutorialRepository.GetTutorial(modifiedData.Id);
+            tutorial.Name = modifiedData.Name;
+            tutorial.Description = modifiedData.Description;
+            Tutorial updatedTutorial = _tutorialRepository.Update(tutorial);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteTutorial(int Id) 
+        { 
+            Tutorial deletedTutorial = _tutorialRepository.Delete(Id);
+            return RedirectToAction("Index");
         }
     }
 }
