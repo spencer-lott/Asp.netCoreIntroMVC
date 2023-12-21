@@ -29,6 +29,10 @@ namespace Asp.netCoreMVCIntro.Controllers
         [HttpPost]
         public IActionResult CreateTutorial(Tutorial tutorial)
         {
+            if(!ModelState.IsValid)
+            {
+                return View(tutorial);
+            }
             Tutorial newTutorial = _tutorialRepository.Add(tutorial);
             return RedirectToAction("Index");
         }

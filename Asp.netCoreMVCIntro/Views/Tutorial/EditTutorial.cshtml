@@ -5,16 +5,11 @@
 
 <form class="mt-3" method="post" asp-controller="Tutorial" asp-action="EditTutorial">
     <input hidden asp-for="Id" />
-    <div class="form-group row mt-3">
-        <label asp-for="Name">Name</label>
-        <input asp-for="Name" class="form-control" placeholder="Name"/>
-    </div>
-    <div class="form-group row mt-3">
-        <label asp-for="Description">Description</label>
-        <input asp-for="Description" class="form-control" />
-    </div>
-    <div class="form-group mt-3">
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <a asp-controller="Tutorial" asp-action="Index" class="btn btn-primary">Cancel</a>
-    </div>
+    @*Partial data can be handled two ways, you should just be consistent and use the same kind throughout the project*@
+    @*Partial tag helper*@
+    <partial name="_TutorialFormFields" model="Model" />
+
+    @*Asynchronous HTML helper*@
+@*     @await Html.PartialAsync("_TutorialFormFields", Model)
+ *@
 </form>

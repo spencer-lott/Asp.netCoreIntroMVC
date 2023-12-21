@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Tutorial>
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" id="navbarDarkDropDownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tutorials</a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDarkDropDownMenuLink">
+        @foreach (var tutorial in Model)
+        {
+            <li><a class="dropdown-item">@tutorial.Name</a></li>
+        }
+    </ul>
+</li>
