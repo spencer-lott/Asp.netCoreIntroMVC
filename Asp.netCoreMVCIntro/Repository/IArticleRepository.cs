@@ -6,11 +6,10 @@ namespace Asp.netCoreMVCIntro.Repository
     public interface IArticleRepository
     {
         void AddArticle(ArticleViewModel article);
-        //Article AddArticle(Article article);
 
         Article UpdateArticle(Article article);
 
-        Article DeleteArticle(int Id); 
+        void DeleteArticle(int Id); 
 
         Article GetArticleById(int id);
 
