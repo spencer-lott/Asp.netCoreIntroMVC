@@ -12,7 +12,7 @@ namespace Asp.netCoreMVCIntro.Repository
 
         Article DeleteArticle(int Id); 
 
-        Article GetArticle(int id);
+        Article GetArticleById(int id);
 
         IEnumerable<Article> GetAllArticles();
 

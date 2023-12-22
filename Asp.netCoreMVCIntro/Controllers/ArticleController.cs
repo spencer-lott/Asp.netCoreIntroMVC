@@ -15,12 +15,34 @@ namespace Asp.netCoreMVCIntro.Controllers
             _articleRepository = articleRepository;
         }
 
+        //List of all articles
         public IActionResult Index() 
         {
             IEnumerable<Article> articles = _articleRepository.GetAllArticles();
             return View(articles);        
         }
 
+        //List of all articles for the specified tutorial 
+        public IActionResult DisplayArticles(int id)
+        {
+            IEnumerable<Article> articles = _articleRepository.GetArticlesByTutorialId(id);
+            return View(articles);
+        }
+
+        //List of all articles for the specified tutorial 
+        public IActionResult DisplayArticlesByTutorialId(int id)
+        {
+            IEnumerable<Article> articles = _articleRepository.GetArticlesByTutorialId(id);
+            return View(articles);
+        }
+
+        public IActionResult GetArticleByArticleId(int id)
+        {
+            Article article = _articleRepository.GetArticleById(id);
+            return View(article);
+        }
+
+        //Add Article Get and Post
         [HttpGet]
         public IActionResult AddNewArticle()
         {
@@ -43,10 +65,35 @@ namespace Asp.netCoreMVCIntro.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult DisplayArticles(int id)
+        //Edit Article Get and Post
+        [HttpGet]
+        public IActionResult EditArticle(int id)
         {
-            IEnumerable<Article> articles = _articleRepository.GetArticlesByTutorialId(id);
-            return View(articles);
+            Article article = _articleRepository.GetArticleById(id);
+            var data = new ArticleViewModel()
+            {
+                ArticleTitle = article.ArticleTitle,
+                ArticleContent = article.ArticleContent
+            };
+            var tutorials = _articleRepository.GetAllTutorials();
+            ViewBag.Tutorials = new SelectList(tutorials, "Id", "Name");
+            return View(data);
         }
+
+        [HttpPost]
+        public IActionResult EditArticle(ArticleViewModel modifiedData)
+        {
+            if(!ModelState.IsValid) 
+            {
+                return View(modifiedData);
+            }
+            Article article = _articleRepository.GetArticleById(modifiedData.Id);
+            article.ArticleTitle = modifiedData.ArticleTitle;
+            article.ArticleContent = modifiedData.ArticleContent;
+            _articleRepository.UpdateArticle(article);
+            return RedirectToAction("Index");
+
+        }
+
     }
 }
