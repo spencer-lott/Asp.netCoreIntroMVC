@@ -1,6 +1,7 @@
 ﻿using Asp.netCoreMVCIntro.Context;
 using Asp.netCoreMVCIntro.Models;
 using Asp.netCoreMVCIntro.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace Asp.netCoreMVCIntro.Repository
 {
@@ -39,9 +40,9 @@ namespace Asp.netCoreMVCIntro.Repository
             return _context.Articles;
         }
 
-        public Article GetArticle(int id)
+        public Article GetArticleById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Articles.Find(id);
         }
 
         public IEnumerable<Tutorial> GetAllTutorials()
@@ -54,9 +55,11 @@ namespace Asp.netCoreMVCIntro.Repository
             return _context.Articles.Where(a => a.TutorialId == tutorialId).ToList();
         }
 
-        public Article UpdateArticle(Article article)
+        public Article UpdateArticle(Article updatedArticle)
         {
-            throw new NotImplementedException();
+            _context.Update(updatedArticle);
+            _context.SaveChanges();
+            return updatedArticle;
         }
 
     }

@@ -26,6 +26,16 @@ namespace Asp.netCoreMVCIntro.Controllers
         //}
 
         [HttpGet]
+        public IActionResult GetTutorial(int id)
+        {
+            Tutorial tutorial = _tutorialRepository.GetTutorial(id);
+            // return RedirectToAction("Index", tutorial);
+            List<Tutorial> tutorials = new List<Tutorial>();
+            tutorials.Add(tutorial);
+            return View("Index", tutorials);
+        }
+
+        [HttpGet]
         public IActionResult CreateTutorial()
         {
             return View();
@@ -58,6 +68,10 @@ namespace Asp.netCoreMVCIntro.Controllers
         [HttpPost]
         public IActionResult EditTutorial(Tutorial modifiedData)
         {
+            if (!ModelState.IsValid) 
+            {
+                return View(modifiedData);
+            }
             Tutorial tutorial = _tutorialRepository.GetTutorial(modifiedData.Id);
             tutorial.Name = modifiedData.Name;
             tutorial.Description = modifiedData.Description;

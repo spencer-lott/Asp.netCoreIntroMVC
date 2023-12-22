@@ -15,13 +15,15 @@ namespace Asp.netCoreMVCIntro.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Article>().HasData(
             new Article
             {
                 ArticleId = 1,
                 ArticleTitle = "Introduction to C#",
                 ArticleContent = "C# is an Object Oriented Programming language",
                 TutorialId = 1
-            };
+            }
+            );
         }
     }
 }
