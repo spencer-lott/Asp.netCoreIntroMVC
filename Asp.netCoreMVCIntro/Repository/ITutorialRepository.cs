@@ -11,8 +11,10 @@ namespace Asp.netCoreMVCIntro.Repository
         Tutorial Delete(int Id);
 
         Tutorial GetTutorial(int Id);
+        //Task<Tutorial> GetTutorial(int Id);
 
         IEnumerable<Tutorial> GetAllTutorials();
+        //Task<IEnumerable<Tutorial>> GetAllTutorials();
 
     }
 }

@@ -5,7 +5,7 @@
     <ul class="dropdown-menu" aria-labelledby="navbarDarkDropDownMenuLink">
         @foreach (var tutorial in Model)
         {
-            <li><a class="dropdown-item">@tutorial.Name</a></li>
+            <li><a class="dropdown-item" asp-controller="Article" asp-action="DisplayArticles" asp-route-id="@tutorial.Id">@tutorial.Name</a></li>
         }
     </ul>
 </li>

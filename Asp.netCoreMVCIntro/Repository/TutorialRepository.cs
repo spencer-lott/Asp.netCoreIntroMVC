@@ -1,5 +1,6 @@
 ﻿using Asp.netCoreMVCIntro.Context;
 using Asp.netCoreMVCIntro.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Asp.netCoreMVCIntro.Repository
 {
@@ -31,13 +32,21 @@ namespace Asp.netCoreMVCIntro.Repository
 
         public IEnumerable<Tutorial> GetAllTutorials()
         {
-            return _context.Tutorials;
+            return  _context.Tutorials.ToList();
         }
+        //public async Task<IEnumerable<Tutorial>> GetAllTutorials()
+        //{
+        //    return await _context.Tutorials.ToListAsync();
+        //}
 
         public Tutorial GetTutorial(int Id)
         {
             return _context.Tutorials.Find(Id);
         }
+        //public async Task<Tutorial> GetTutorial(int Id)
+        //{
+        //    return await _context.Tutorials.FindAsync(Id);
+        //}
 
         public Tutorial Update(Tutorial tutorialModified)
         {
