@@ -14,11 +14,16 @@ namespace Asp.netCoreMVCIntro.Controllers
             _tutorialRepository = tutorialRepository;
         }
 
-        public IActionResult Index()
+        public  IActionResult Index()
         {
             var tutorials = _tutorialRepository.GetAllTutorials();
             return View(tutorials);
         }
+        //public async Task <IActionResult> Index()
+        //{
+        //    var tutorials = await _tutorialRepository.GetAllTutorials();
+        //    return View(tutorials);
+        //}
 
         [HttpGet]
         public IActionResult CreateTutorial()
@@ -43,6 +48,12 @@ namespace Asp.netCoreMVCIntro.Controllers
             Tutorial tutorial = _tutorialRepository.GetTutorial(Id);
             return View(tutorial);
         }
+        //[HttpGet]
+        //public async Task<IActionResult> EditTutorial(int Id)
+        //{
+        //    Tutorial tutorial = await _tutorialRepository.GetTutorial(Id);
+        //    return View(tutorial);
+        //}
 
         [HttpPost]
         public IActionResult EditTutorial(Tutorial modifiedData)
@@ -53,6 +64,15 @@ namespace Asp.netCoreMVCIntro.Controllers
             Tutorial updatedTutorial = _tutorialRepository.Update(tutorial);
             return RedirectToAction("Index");
         }
+        //[HttpPost]
+        //public async Task<IActionResult> EditTutorial(Tutorial modifiedData)
+        //{
+        //    Tutorial tutorial = await _tutorialRepository.GetTutorial(modifiedData.Id);
+        //    tutorial.Name = modifiedData.Name;
+        //    tutorial.Description = modifiedData.Description;
+        //    Tutorial updatedTutorial = _tutorialRepository.Update(tutorial);
+        //    return RedirectToAction("Index");
+        //}
 
         public IActionResult DeleteTutorial(int Id) 
         { 

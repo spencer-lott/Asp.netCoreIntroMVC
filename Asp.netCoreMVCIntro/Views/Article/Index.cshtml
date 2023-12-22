@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Article>
+@{
+    ViewBag.Title = "Articles";
+}
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p><h1>Articles</h1></p>
+        <table class="table">
+            <tr>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            @foreach (var article in Model)
+            {
+                <tr>
+                    <td>@article.ArticleTitle</td>
+                    <td>@article.ArticleContent</td>
+                    <td><a class="text-dark btn btn-outline-success" asp-controller="Article" asp-action="EditArticle" asp-route-id="@article.ArticleId">Edit</a></td>
+                    <td><a class="text-dark btn btn-outline-danger" asp-controller="Article" asp-action="DeleteArticle" asp-route-id="@article.ArticleId">Delete</a></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

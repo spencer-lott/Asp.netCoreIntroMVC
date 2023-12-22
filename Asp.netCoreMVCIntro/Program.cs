@@ -16,7 +16,9 @@ namespace Asp.netCoreMVCIntro
             //Register DbContext
             var connectionString = builder.Configuration.GetConnectionString("TutorialDbConnection");
             builder.Services.AddDbContext<TutorialDbContext>(options => options.UseSqlServer(connectionString));
+
             builder.Services.AddScoped<ITutorialRepository, TutorialRepository>();
+            builder.Services.AddScoped<IArticleRepository, ArticleRepository>();
 
             var app = builder.Build();
 

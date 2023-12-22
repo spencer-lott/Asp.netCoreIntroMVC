@@ -13,8 +13,8 @@ namespace Asp.netCoreMVCIntro.ViewComponents
         //Synchronous method
         public IViewComponentResult Invoke()
         {
-            var tutorials = _tutorialRepository.GetAllTutorials().OrderBy(p => p.Name);
-            return View(tutorials); 
+            var tutorials = _tutorialRepository.GetAllTutorials();/*.OrderBy(p => p.Name);*/
+            return View(tutorials);
         }
 
         //Async method
