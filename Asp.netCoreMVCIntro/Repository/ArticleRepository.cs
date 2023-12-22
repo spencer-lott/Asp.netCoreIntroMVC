@@ -12,10 +12,6 @@ namespace Asp.netCoreMVCIntro.Repository
         {
             _context = context;
         }
-        //public Article AddArticle(Article article)
-        //{
-        //    throw new NotImplementedException();
-        //}
         public void AddArticle(ArticleViewModel article)
         {
             var newArticle = new Article()
@@ -30,9 +26,14 @@ namespace Asp.netCoreMVCIntro.Repository
         }
 
 
-        public Article DeleteArticle(int id)
+        public void DeleteArticle(int id)
         {
-            throw new NotImplementedException();
+            Article article = _context.Articles.Find(id);
+            if (article != null) 
+            {
+                _context.Articles.Remove(article);
+                _context.SaveChanges();
+            }
         }
 
         public IEnumerable<Article> GetAllArticles()

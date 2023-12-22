@@ -23,11 +23,11 @@ namespace Asp.netCoreMVCIntro.Controllers
         }
 
         //List of all articles for the specified tutorial 
-        public IActionResult DisplayArticles(int id)
-        {
-            IEnumerable<Article> articles = _articleRepository.GetArticlesByTutorialId(id);
-            return View(articles);
-        }
+        //public IActionResult DisplayArticles(int id)
+        //{
+        //    IEnumerable<Article> articles = _articleRepository.GetArticlesByTutorialId(id);
+        //    return View(articles);
+        //}
 
         //List of all articles for the specified tutorial 
         public IActionResult DisplayArticlesByTutorialId(int id)
@@ -92,7 +92,12 @@ namespace Asp.netCoreMVCIntro.Controllers
             article.ArticleContent = modifiedData.ArticleContent;
             _articleRepository.UpdateArticle(article);
             return RedirectToAction("Index");
+        }
 
+        public IActionResult DeleteArticle(int id) 
+        {
+            _articleRepository.DeleteArticle(id);
+            return RedirectToAction("Index");
         }
 
     }
